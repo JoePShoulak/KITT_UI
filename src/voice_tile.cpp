@@ -1,12 +1,10 @@
 #include "voice_tile.h"
 #include "config.h"
-#include "audio_helper.h"
 
-static void aud_event_cb(lv_event_t *e) {
-  if (lv_event_get_code(e) == LV_EVENT_PRESSED) {
-    audio_stop();
-  }
-}
+// TODO: Audio stop functionality removed along with audio_helper.
+
+// TODO: removed audio stop event callback (aud_event_cb) pending
+// reintroduction of audio functionality.
 
 VoiceTile::VoiceTile(lv_obj_t *tileview, int row_id,
                      ButtonData const *button_data) {
@@ -56,10 +54,8 @@ VoiceTile::VoiceTile(lv_obj_t *tileview, int row_id,
     }
   }
 
-  // Hidden audio stop on AUD indicator
-  lv_obj_add_event_cb(indicators[0]->getObj(), aud_event_cb, LV_EVENT_PRESSED,
-                      nullptr);
-  lv_obj_add_flag(indicators[0]->getObj(), LV_OBJ_FLAG_CLICKABLE);
+  // TODO: Previously added event to stop audio when AUD indicator was pressed.
+  // Functionality removed with audio_helper removal.
 
   visualiser = new VoiceVisualiser(grid);
 

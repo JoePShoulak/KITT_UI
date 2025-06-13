@@ -2,7 +2,7 @@
 
 #include "config.h"
 #include "voice_tile.h"
-#include "audio_helper.h"
+// TODO: Removed audio_helper include; audio playback status disabled.
 #include <stdlib.h>
 
 void voice_anim_cb(lv_timer_t *t) {
@@ -11,7 +11,7 @@ void voice_anim_cb(lv_timer_t *t) {
   static int hold = 0;
   static bool was_playing = false;
   (void)t;
-  bool playing = audio_is_playing();
+  bool playing = false; // TODO: Determine playing state when audio helper is available
 
   if (!playing) {
     if (was_playing && voiceTile) {

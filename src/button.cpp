@@ -1,5 +1,5 @@
 #include "button.h"
-#include "audio_helper.h"
+// TODO: Removed audio_helper include; re-add when audio functionality returns.
 #include <Arduino.h>
 
 static void btn_event_cb(lv_event_t *e) {
@@ -121,7 +121,7 @@ void Button::eventHandler(lv_event_t *e) {
           if (callback)
             callback(e);
         } else {
-          audio_play("error.wav");
+          // TODO: Play error sound when audio functionality is restored.
         }
         long_press_handled = true;
         if (!toggleable)
@@ -136,7 +136,7 @@ void Button::eventHandler(lv_event_t *e) {
       if (callback)
         callback(e);
     } else {
-      audio_play("error.wav");
+      // TODO: Play error sound when audio functionality is restored.
     }
   }
 }
