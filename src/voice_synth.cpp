@@ -2,9 +2,10 @@
 
 #include "config.h"
 #include "voice_tile.h"
-// Provide access to the audio player.  The real header lives in the
-// GigaAudio library but may not be present when building the UI in
-// isolation.  A forward declaration is provided in ``voice_synth.h``.
+// Access to the audio player.  The real header is provided by the
+// GigaAudio library which is expected to be available in projects that
+// use this UI library.
+#include <GigaAudio.h>
 #include <stdlib.h>
 
 void voice_anim_cb(lv_timer_t *t) {
@@ -12,7 +13,8 @@ void voice_anim_cb(lv_timer_t *t) {
   static float target = 0.f;
   static int hold = 0;
   static bool was_playing = false;
-  GigaAudio *audio = t ? static_cast<GigaAudio *>(t->user_data) : nullptr;
+  GigaAudio *audio =
+      t ? static_cast<GigaAudio *>(lv_timer_get_user_data(t)) : nullptr;
   bool playing = audio && audio->isPlaying();
 
   if (!playing) {
