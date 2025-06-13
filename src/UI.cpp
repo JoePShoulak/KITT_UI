@@ -19,7 +19,7 @@ Button *blackout_btn = nullptr;
 Button *btn48v = nullptr;
 Button *inverter_btn = nullptr;
 
-void UI::init(AudioClass &audio) {
+void UI::init(GigaAudio &audio) {
   Serial.print("Initializing UI...");
 
   canvas = lv_scr_act();

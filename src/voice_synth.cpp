@@ -5,11 +5,6 @@
 // Provide access to the audio player.  The real header lives in the
 // GigaAudio library but may not be present when building the UI in
 // isolation.  A forward declaration is provided in ``voice_synth.h``.
-#if __has_include(<Arduino_GigaAudio.h>)
-#  include <Arduino_GigaAudio.h>
-#elif __has_include(<GigaAudio.h>)
-#  include <GigaAudio.h>
-#endif
 #include <stdlib.h>
 
 void voice_anim_cb(lv_timer_t *t) {
@@ -17,7 +12,7 @@ void voice_anim_cb(lv_timer_t *t) {
   static float target = 0.f;
   static int hold = 0;
   static bool was_playing = false;
-  AudioClass *audio = t ? static_cast<AudioClass *>(t->user_data) : nullptr;
+  GigaAudio *audio = t ? static_cast<GigaAudio *>(t->user_data) : nullptr;
   bool playing = audio && audio->isPlaying();
 
   if (!playing) {
