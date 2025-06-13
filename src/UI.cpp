@@ -19,7 +19,7 @@ Button *blackout_btn = nullptr;
 Button *btn48v = nullptr;
 Button *inverter_btn = nullptr;
 
-void UI::init() {
+void UI::init(AudioClass &audio) {
   Serial.print("Initializing UI...");
 
   canvas = lv_scr_act();
@@ -72,7 +72,9 @@ void UI::init() {
 
   lv_obj_set_tile_id(tiles, 2, 0, LV_ANIM_OFF); // start on voice tile
 
-  voice_anim_timer = lv_timer_create(voice_anim_cb, 50, nullptr);
+  // Pass the audio instance to the animation timer so the callback can query
+  // its playback state.
+  voice_anim_timer = lv_timer_create(voice_anim_cb, 50, &audio);
   // Slow down gauge animations so they are less frenetic
   gauge_anim_timer = lv_timer_create(gauge_anim_cb, 150, nullptr);
 

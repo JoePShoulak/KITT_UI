@@ -6,6 +6,7 @@
 class ButtonPanel;
 class VoiceTile;
 class GaugeTile;
+class AudioClass;
 
 class UI {
   lv_obj_t *canvas = nullptr;
@@ -19,7 +20,7 @@ class UI {
   lv_timer_t *gauge_anim_timer = nullptr;
 
 public:
-  void init();
+  void init(AudioClass &audio);
   VoiceTile *getVoiceTile() const { return voiceTile; }
   ButtonPanel *getLeftPanel() const { return leftPanel; }
   ButtonPanel *getRightPanel() const { return rightPanel; }
