@@ -5,7 +5,6 @@
 // Make the digits wider for a larger speedometer display
 static const int DIGIT_WIDTH = 80;
 
-
 static lv_obj_t *create_seg(lv_obj_t *parent, int x, int y, int w, int h,
                             lv_color_t color_off) {
   lv_obj_t *seg = lv_obj_create(parent);
@@ -92,10 +91,7 @@ static const uint8_t digit_masks[10] = {
 };
 
 void SevenSegmentDisplay::setValue(int value) {
-  if (value < 0)
-    value = 0;
-  if (value > 999)
-    value = 999;
+  value = constrain(value, 0, 999);
   int vals[3] = {value / 100, (value / 10) % 10, value % 10};
   for (int d = 0; d < 3; ++d) {
     uint8_t mask = digit_masks[vals[d]];

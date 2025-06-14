@@ -83,10 +83,7 @@ Gauge::Gauge(lv_obj_t *parent, const char *label) {
 }
 
 void Gauge::setValue(float norm) {
-  if (norm < 0.f)
-    norm = 0.f;
-  if (norm > 1.f)
-    norm = 1.f;
+  norm = constrain(norm, 0.0f, 1.0f);
   int active = (int)(norm * 10 + 0.5f);
   for (int n = 0; n < 10; ++n) {
     lv_obj_set_style_bg_color(bars[n], n < active ? light_colors[n] : dark_colors[n], 0);
