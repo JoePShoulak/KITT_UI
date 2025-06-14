@@ -45,11 +45,10 @@ void UI::init(GigaAudio &audio) {
   }
   rightPanel = ButtonPanel::createTile(tiles, 3, button_panel2);
 
-  static const char *const right_labels[] = {"BATTERY VOLTAGE",
-                                             "BATTERY CURRENT",
-                                             "SOLAR VOLTAGE",
-                                             "SOLAR CURRENT",
-                                             "TEMPERATURE"};
+  static const char *const right_labels[] = {
+      "BATTERY 1 VOLTAGE", "BATTERY 2 VOLTAGE",
+      "BATTERY 1 CURRENT", "BATTERY 2 CURRENT",
+      "TEMPERATURE"};
   gaugeTile = new GaugeTile(tiles, 4, right_labels, 5);
   ::gaugeTile = gaugeTile;
   motor_btn = rightPanel->getButton(0);
