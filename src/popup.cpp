@@ -5,6 +5,12 @@
 static void ok_event_cb(lv_event_t *e) {
   lv_obj_t *overlay = static_cast<lv_obj_t *>(lv_event_get_user_data(e));
   if (overlay) {
+    lv_obj_t *tile = lv_obj_get_parent(overlay);
+    if (tile) {
+      lv_obj_t *tv = lv_obj_get_parent(tile);
+      if (tv)
+        lv_obj_set_scroll_dir(tv, LV_DIR_HOR);
+    }
     lv_obj_del(overlay);
   }
 }
@@ -12,6 +18,10 @@ static void ok_event_cb(lv_event_t *e) {
 lv_obj_t *show_error_popup(lv_obj_t *parent_tile, const char *msg) {
   if (!parent_tile)
     return nullptr;
+
+  lv_obj_t *tv = lv_obj_get_parent(parent_tile);
+  if (tv)
+    lv_obj_set_scroll_dir(tv, LV_DIR_NONE);
 
   lv_obj_t *overlay = lv_obj_create(parent_tile);
   lv_obj_remove_style_all(overlay);
