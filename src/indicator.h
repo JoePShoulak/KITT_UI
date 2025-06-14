@@ -1,7 +1,7 @@
 #ifndef INDICATOR_H
 #define INDICATOR_H
 
-#include "lvgl_wrapper.h"
+#include <lvgl.h>
 
 struct IndicatorData {
   const char *label;

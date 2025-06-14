@@ -1,7 +1,7 @@
 #ifndef SEVEN_SEGMENT_H
 #define SEVEN_SEGMENT_H
 
-#include "lvgl_wrapper.h"
+#include <lvgl.h>
 
 class SevenSegmentDisplay {
   lv_obj_t *container;
