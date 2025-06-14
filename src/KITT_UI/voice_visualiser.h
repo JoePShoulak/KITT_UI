@@ -1,7 +1,7 @@
 #ifndef VOICE_VISUALIZER_H
 #define VOICE_VISUALIZER_H
 
-#include "lvgl_wrapper.h"
+#include "KITT_UI/lvgl_wrapper.h"
 
 class VoiceVisualiser {
   lv_obj_t *viz;

@@ -1,12 +1,12 @@
-#include "UI.h"
+#include "KITT_UI/UI.h"
 
-#include "button_panel.h"
-#include "colors.h"
-#include "config.h"
-#include "voice_synth.h"
-#include "voice_tile.h"
-#include "gauge_tile.h"
-#include "gauge_anim.h"
+#include "KITT_UI/button_panel.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/config.h"
+#include "KITT_UI/voice_synth.h"
+#include "KITT_UI/voice_tile.h"
+#include "KITT_UI/gauge_tile.h"
+#include "KITT_UI/gauge_anim.h"
 
 UI ui;
 

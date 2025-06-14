@@ -1,6 +1,6 @@
-#include "popup.h"
-#include "colors.h"
-#include "config.h"
+#include "KITT_UI/popup.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/config.h"
 
 static void ok_event_cb(lv_event_t *e) {
   lv_obj_t *overlay = static_cast<lv_obj_t *>(lv_event_get_user_data(e));

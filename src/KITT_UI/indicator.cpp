@@ -1,6 +1,6 @@
-#include "indicator.h"
-#include "colors.h"
-#include "config.h"
+#include "KITT_UI/indicator.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/config.h"
 
 Indicator::Indicator(const IndicatorData &data, lv_obj_t *parent) : data(data) {
   lv_obj_t *indicator = lv_obj_create(parent);

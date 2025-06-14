@@ -1,6 +1,6 @@
-#include "voice_visualiser.h"
-#include "colors.h"
-#include "config.h"
+#include "KITT_UI/voice_visualiser.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/config.h"
 
 VoiceVisualiser::VoiceVisualiser(lv_obj_t *parent) {
   viz = lv_obj_create(parent);

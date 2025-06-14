@@ -3,9 +3,9 @@
 #ifndef BUTTON_PANEL_H
 #define BUTTON_PANEL_H
 
-#include "button.h"
-#include "config.h"
-#include "lvgl_wrapper.h"
+#include "KITT_UI/button.h"
+#include "KITT_UI/config.h"
+#include "KITT_UI/lvgl_wrapper.h"
 
 class ButtonPanel {
   Button *buttons[BUTTON_COUNT];
