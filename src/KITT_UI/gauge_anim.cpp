@@ -1,8 +1,8 @@
-#include "gauge_anim.h"
-#include "config.h"
-#include "gauge_tile.h"
-#include "gauge.h"
-#include "seven_segment.h"
+#include "KITT_UI/gauge_anim.h"
+#include "KITT_UI/config.h"
+#include "KITT_UI/gauge_tile.h"
+#include "KITT_UI/gauge.h"
+#include "KITT_UI/seven_segment.h"
 #include <stdlib.h>
 
 // Update gauges and the speedometer using a simple random walk.

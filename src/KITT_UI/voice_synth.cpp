@@ -1,7 +1,7 @@
-#include "voice_synth.h"
+#include "KITT_UI/voice_synth.h"
 
-#include "config.h"
-#include "voice_tile.h"
+#include "KITT_UI/config.h"
+#include "KITT_UI/voice_tile.h"
 // Access to the audio player.  The real header is provided by the
 // GigaAudio library which is expected to be available in projects that
 // use this UI library.

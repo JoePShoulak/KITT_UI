@@ -1,6 +1,6 @@
-#include "seven_segment.h"
-#include "colors.h"
-#include "config.h"
+#include "KITT_UI/seven_segment.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/config.h"
 
 // Make the digits wider for a larger speedometer display
 static const int DIGIT_WIDTH = 80;

@@ -1,7 +1,7 @@
 // button_panel.cpp
 
-#include "button_panel.h"
-#include "lvgl_wrapper.h"
+#include "KITT_UI/button_panel.h"
+#include "KITT_UI/lvgl_wrapper.h"
 
 ButtonPanel::ButtonPanel(lv_obj_t *parent, ButtonData const *config) {
   // Calculate sizing

@@ -1,5 +1,5 @@
-#include "gauge.h"
-#include "colors.h"
+#include "KITT_UI/gauge.h"
+#include "KITT_UI/colors.h"
 #include <ctype.h>
 
 Gauge::Gauge(lv_obj_t *parent, const char *label) {

@@ -1,7 +1,7 @@
 #ifndef VOICE_SYNTH_H
 #define VOICE_SYNTH_H
 
-#include "lvgl_wrapper.h"
+#include "KITT_UI/lvgl_wrapper.h"
 
 // Forward declaration from the GigaAudio library
 class GigaAudio;

@@ -1,10 +1,10 @@
 #ifndef VOICE_TILE_H
 #define VOICE_TILE_H
 
-#include "button.h"
-#include "indicator.h"
-#include "voice_visualiser.h"
-#include "lvgl_wrapper.h"
+#include "KITT_UI/button.h"
+#include "KITT_UI/indicator.h"
+#include "KITT_UI/voice_visualiser.h"
+#include "KITT_UI/lvgl_wrapper.h"
 
 class GigaAudio;
 

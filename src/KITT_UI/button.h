@@ -1,8 +1,8 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "colors.h"
-#include "lvgl_wrapper.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/lvgl_wrapper.h"
 
 using button_callback = void (*)(lv_event_t *);
 using validate_callback = bool (*)(lv_event_t *);

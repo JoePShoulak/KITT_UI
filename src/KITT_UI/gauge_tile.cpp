@@ -1,8 +1,8 @@
-#include "gauge_tile.h"
-#include "gauge.h"
-#include "seven_segment.h"
-#include "colors.h"
-#include "config.h"
+#include "KITT_UI/gauge_tile.h"
+#include "KITT_UI/gauge.h"
+#include "KITT_UI/seven_segment.h"
+#include "KITT_UI/colors.h"
+#include "KITT_UI/config.h"
 
 GaugeTile::GaugeTile(lv_obj_t *tileview, int row_id, const char *const *labels,
                      int count, bool with_display)

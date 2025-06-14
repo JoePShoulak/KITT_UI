@@ -1,4 +1,4 @@
-#include "button.h"
+#include "KITT_UI/button.h"
 // TODO: Removed audio_helper include; re-add when audio functionality returns.
 #include <Arduino.h>
 

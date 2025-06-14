@@ -1,5 +1,5 @@
-#include "voice_tile.h"
-#include "config.h"
+#include "KITT_UI/voice_tile.h"
+#include "KITT_UI/config.h"
 #include <GigaAudio.h>
 
 static void aud_event_cb(lv_event_t *e) {
