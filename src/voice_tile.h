@@ -6,6 +6,8 @@
 #include "voice_visualiser.h"
 #include "lvgl_wrapper.h"
 
+class GigaAudio;
+
 class VoiceTile {
   lv_obj_t *tile;
   lv_obj_t *grid;
@@ -14,7 +16,8 @@ class VoiceTile {
   Button *buttons[3];
 
 public:
-  VoiceTile(lv_obj_t *tileview, int row_id, ButtonData const *button_data);
+  VoiceTile(lv_obj_t *tileview, int row_id, ButtonData const *button_data,
+            GigaAudio *audio);
 
   lv_obj_t *getTile() const { return tile; }
   VoiceVisualiser *getVisualiser() const { return visualiser; }

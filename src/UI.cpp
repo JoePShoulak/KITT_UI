@@ -35,7 +35,7 @@ void UI::init(GigaAudio &audio) {
   ::leftGaugeTile = leftGaugeTile;
 
   leftPanel = ButtonPanel::createTile(tiles, 1, button_panel1);
-  voiceTile = new VoiceTile(tiles, 2, voice_buttons);
+  voiceTile = new VoiceTile(tiles, 2, voice_buttons, &audio);
   ::voiceTile = voiceTile;
   for (int i = 0; i < 3; ++i) {
     Button *btn = voiceTile->getButton(i);

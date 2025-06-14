@@ -1,13 +1,18 @@
 #include "voice_tile.h"
 #include "config.h"
+#include <GigaAudio.h>
 
-// TODO: Audio stop functionality removed along with audio_helper.
-
-// TODO: removed audio stop event callback (aud_event_cb) pending
-// reintroduction of audio functionality.
+static void aud_event_cb(lv_event_t *e) {
+  auto audio = static_cast<GigaAudio *>(lv_event_get_user_data(e));
+  if (!audio)
+    return;
+  lv_event_code_t code = lv_event_get_code(e);
+  if (code == LV_EVENT_CLICKED)
+    audio->stop();
+}
 
 VoiceTile::VoiceTile(lv_obj_t *tileview, int row_id,
-                     ButtonData const *button_data) {
+                     ButtonData const *button_data, GigaAudio *audio) {
   tile = lv_tileview_add_tile(tileview, row_id, 0, LV_DIR_HOR);
   lv_obj_set_style_bg_color(tile, BLACK, 0);
   // Tile itself shouldn't be scrollable
@@ -54,8 +59,10 @@ VoiceTile::VoiceTile(lv_obj_t *tileview, int row_id,
     }
   }
 
-  // TODO: Previously added event to stop audio when AUD indicator was pressed.
-  // Functionality removed with audio_helper removal.
+  if (audio && indicators[0]) {
+    lv_obj_add_event_cb(indicators[0]->getObj(), aud_event_cb, LV_EVENT_CLICKED,
+                        audio);
+  }
 
   visualiser = new VoiceVisualiser(grid);
 
