@@ -1,6 +1,7 @@
 #include "gauge.h"
 #include "colors.h"
 #include <ctype.h>
+#include <Arduino.h>
 
 Gauge::Gauge(lv_obj_t *parent, const char *label) {
   container = lv_obj_create(parent);
