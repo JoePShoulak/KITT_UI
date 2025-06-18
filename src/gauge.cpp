@@ -3,6 +3,9 @@
 #include "gauge.h"
 #include "colors.h"
 
+#define BAR_WIDTH
+#define BAR_HEIGHT
+
 Gauge::Gauge(lv_obj_t *parent, const char *label)
 {
   container = lv_obj_create(parent);
@@ -46,15 +49,13 @@ Gauge::Gauge(lv_obj_t *parent, const char *label)
   lv_obj_set_style_pad_row(row, 0, 0);
   lv_obj_set_width(row, LV_SIZE_CONTENT);
 
-  int h = 20;
-  int w = 40;
   for (int n = 0; n < 10; ++n)
   {
     lv_obj_t *bar = lv_obj_create(row);
     lv_obj_remove_style_all(bar);
     lv_obj_clear_flag(bar, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_set_style_radius(bar, 3, 0);
-    lv_obj_set_size(bar, w, h);
+    lv_obj_set_size(bar, BAR_WIDTH, BAR_HEIGHT);
     lv_obj_set_style_bg_opa(bar, LV_OPA_COVER, 0);
     lv_color_t dark, light;
 
