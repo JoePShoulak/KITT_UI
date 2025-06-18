@@ -6,7 +6,7 @@
 #define BAR_WIDTH 30
 #define BAR_HEIGHT 40
 
-Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.unit) // , min(data.min), max(data.max), reversed(data.reversed)
+Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.unit), _min(data.min), _max(data.max), reversed(data.reversed)
 {
   container = lv_obj_create(parent);
   lv_obj_remove_style_all(container);
@@ -73,23 +73,32 @@ Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.un
     bars[n] = bar;
   }
 
-  setValue(0.f);
+  setValue(_min + (_max - _min) / 2);
 }
 
-void Gauge::setValue(float norm)
+void Gauge::setValue(float val)
 {
-  norm = constrain(norm, 0.0f, 1.0f);
-  int active = (int)(norm * 10 + 0.5f);
+  value = constrain(val, _min, _max);
+  int active = (int)((value - _min) / (_max - _min) * 10);
 
   char buf[48];
 
-  if (unit[0])
-    snprintf(buf, sizeof(buf), "%s   %.2f%s", label, norm, unit);
-  else
-    snprintf(buf, sizeof(buf), "%s   %.2f", label, norm);
+  snprintf(buf, sizeof(buf), "%s   %.2f%s", label, value, unit);
 
   lv_label_set_text(label_obj, buf);
 
   for (int n = 0; n < 10; ++n)
     lv_obj_set_style_bg_color(bars[n], n < active ? light_colors[n] : dark_colors[n], 0);
+}
+
+float Gauge::getValue()
+{
+  return value;
+}
+
+float Gauge::drunken_walk()
+{
+  float step_max = sqrt(_max - _min);
+  float step = rand() % (2 * (int)step_max + 1) - step_max;
+  setValue(value + step);
 }

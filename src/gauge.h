@@ -7,9 +7,9 @@ struct GaugeData
 {
   const char *label;
   const char *unit;
-  // int min;
-  // int max;
-  // bool reversed;
+  int min;
+  int max;
+  bool reversed;
 };
 
 class Gauge
@@ -23,14 +23,17 @@ class Gauge
   // data
   const char *label;
   const char *unit;
-  // int min;
-  // int max;
-  // int reversed;
+  int _min;
+  int _max;
+  int reversed;
+  float value;
 
 public:
   Gauge(lv_obj_t *parent, GaugeData data);
-  void setValue(float norm); // 0..1
+  void setValue(float val);
+  float getValue();
   lv_obj_t *getObj() const { return container; }
+  float drunken_walk();
 };
 
 #endif

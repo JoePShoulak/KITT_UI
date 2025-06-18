@@ -15,7 +15,7 @@
 #define GRAY_LIGHT lv_color_hex(0xBBBBBB)
 
 // dark variants for toggled-off states
-#define RED_DARK lv_color_hex(0x880000)
+#define RED_DARK lv_color_hex(0x840000)
 #define YELLOW_DARK lv_color_hex(0x666600)
 #define ORANGE_DARK lv_color_hex(0x993300)
 #define GREEN_DARK lv_color_hex(0x006600)
