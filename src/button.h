@@ -7,23 +7,26 @@
 using button_callback = void (*)(lv_event_t *);
 using validate_callback = bool (*)(lv_event_t *);
 
-struct ButtonData {
+struct ButtonData
+{
   const char *label;
   button_callback callback;
+  validate_callback validate;
   bool toggleable;
   bool severe = false; // hold for one second before triggering if true
   bool start_active = false;
 };
 
-class Button {
+class Button
+{
 public:
-  Button(lv_obj_t *parent_grid, const ButtonData &data, uint8_t grid_col,
-         uint8_t grid_row);
-  Button(lv_obj_t *parent_grid, const ButtonData &data, uint8_t grid_col,
-         uint8_t grid_row, lv_color_t color_off, lv_color_t color_on);
+  Button(lv_obj_t *parent_grid, const ButtonData &data, uint8_t grid_col, uint8_t grid_row);
+  Button(lv_obj_t *parent_grid, const ButtonData &data, uint8_t grid_col, uint8_t grid_row, lv_color_t color_off, lv_color_t color_on);
+
   void setCallback(button_callback cb);
   void setValidate(validate_callback cb);
   void handlePress();
+  void activate(lv_event_t *e);
   void updateVisual();
   void eventHandler(lv_event_t *e);
 
