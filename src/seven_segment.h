@@ -3,7 +3,8 @@
 
 #include <lvgl.h>
 
-class SevenSegmentDisplay {
+class SevenSegmentDisplay
+{
   lv_obj_t *container;
   lv_obj_t *segments[3][7];
   lv_obj_t *label;

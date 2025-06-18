@@ -4,7 +4,9 @@
 #include "config.h"
 
 // Make the digits wider for a larger speedometer display
-static const int DIGIT_WIDTH = 80;
+#define DW 80
+#define DH 160
+#define DT 12
 
 static lv_obj_t *create_seg(lv_obj_t *parent, int x, int y, int w, int h, lv_color_t color_off)
 {
@@ -16,29 +18,27 @@ static lv_obj_t *create_seg(lv_obj_t *parent, int x, int y, int w, int h, lv_col
   lv_obj_set_style_bg_opa(seg, LV_OPA_COVER, 0);
   lv_obj_set_style_border_width(seg, 0, 0);
   lv_obj_set_style_radius(seg, 2, 0);
+
   return seg;
 }
 
 void SevenSegmentDisplay::createDigit(lv_obj_t *parent, int idx)
 {
-  const int w = DIGIT_WIDTH;
-  // Increase the digit height as well
-  const int h = 160;
   const int t = 12;
-  lv_color_t off = RED_DARK;
+
   lv_obj_t *digit = lv_obj_create(parent);
   lv_obj_remove_style_all(digit);
   lv_obj_set_size(digit, w, h);
   lv_obj_set_style_bg_opa(digit, LV_OPA_TRANSP, 0);
   lv_obj_set_style_pad_all(digit, 0, 0);
 
-  segments[idx][0] = create_seg(digit, t, 0, w - 2 * t, t, off);             // top
-  segments[idx][1] = create_seg(digit, w - t, t, t, h / 2 - t, off);         // top-right
-  segments[idx][2] = create_seg(digit, w - t, h / 2, t, h / 2 - t, off);     // bottom-right
-  segments[idx][3] = create_seg(digit, t, h - t, w - 2 * t, t, off);         // bottom
-  segments[idx][4] = create_seg(digit, 0, h / 2, t, h / 2 - t, off);         // bottom-left
-  segments[idx][5] = create_seg(digit, 0, t, t, h / 2 - t, off);             // top-left
-  segments[idx][6] = create_seg(digit, t, h / 2 - t / 2, w - 2 * t, t, off); // middle
+  segments[idx][0] = create_seg(digit, DT, 0, DW - 2 * DT, DT, RED_DARK);              // top
+  segments[idx][1] = create_seg(digit, DW - DT, DT, DT, DH / 2 - DT, RED_DARK);        // top-right
+  segments[idx][2] = create_seg(digit, DW - DT, DH / 2, DT, DH / 2 - DT, RED_DARK);    // bottom-right
+  segments[idx][3] = create_seg(digit, DT, DH - DT, DW - 2 * DT, DT, RED_DARK);        // bottom
+  segments[idx][4] = create_seg(digit, 0, DH / 2, DT, DH / 2 - DT, RED_DARK);          // bottom-left
+  segments[idx][5] = create_seg(digit, 0, DT, DT, DH / 2 - DT, RED_DARK);              // top-left
+  segments[idx][6] = create_seg(digit, DT, DH / 2 - t / 2, DW - 2 * DT, DT, RED_DARK); // middle
 }
 
 SevenSegmentDisplay::SevenSegmentDisplay(lv_obj_t *parent, const char *labelText)
@@ -61,12 +61,10 @@ SevenSegmentDisplay::SevenSegmentDisplay(lv_obj_t *parent, const char *labelText
   lv_obj_align(row, LV_ALIGN_TOP_MID, 0, 0);
 
   for (int i = 0; i < 3; ++i)
-  {
     createDigit(row, i);
-  }
 
   label = lv_label_create(container);
-  lv_label_set_text(label, labelText ? labelText : "");
+  lv_label_set_text(label, labelText);
   lv_obj_set_style_text_color(label, WHITE, 0);
   lv_obj_set_style_text_font(label, &lv_font_montserrat_14, 0);
   lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_LEFT, 0);
@@ -93,9 +91,11 @@ void SevenSegmentDisplay::setValue(int value)
 {
   value = constrain(value, 0, 999);
   int vals[3] = {value / 100, (value / 10) % 10, value % 10};
+
   for (int d = 0; d < 3; ++d)
   {
     uint8_t mask = digit_masks[vals[d]];
+
     for (int s = 0; s < 7; ++s)
     {
       lv_color_t color = (mask & (1 << s)) ? RED : RED_DARK;
