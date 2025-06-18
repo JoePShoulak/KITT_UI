@@ -3,7 +3,8 @@
 
 #include <lvgl.h>
 
-class Gauge {
+class Gauge
+{
   lv_obj_t *container;
   lv_obj_t *bars[10];
   lv_color_t dark_colors[10];
