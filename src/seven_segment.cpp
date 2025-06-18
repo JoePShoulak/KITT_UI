@@ -24,21 +24,19 @@ static lv_obj_t *create_seg(lv_obj_t *parent, int x, int y, int w, int h, lv_col
 
 void SevenSegmentDisplay::createDigit(lv_obj_t *parent, int idx)
 {
-  const int t = 12;
-
   lv_obj_t *digit = lv_obj_create(parent);
   lv_obj_remove_style_all(digit);
-  lv_obj_set_size(digit, w, h);
+  lv_obj_set_size(digit, DW, DH);
   lv_obj_set_style_bg_opa(digit, LV_OPA_TRANSP, 0);
   lv_obj_set_style_pad_all(digit, 0, 0);
 
-  segments[idx][0] = create_seg(digit, DT, 0, DW - 2 * DT, DT, RED_DARK);              // top
-  segments[idx][1] = create_seg(digit, DW - DT, DT, DT, DH / 2 - DT, RED_DARK);        // top-right
-  segments[idx][2] = create_seg(digit, DW - DT, DH / 2, DT, DH / 2 - DT, RED_DARK);    // bottom-right
-  segments[idx][3] = create_seg(digit, DT, DH - DT, DW - 2 * DT, DT, RED_DARK);        // bottom
-  segments[idx][4] = create_seg(digit, 0, DH / 2, DT, DH / 2 - DT, RED_DARK);          // bottom-left
-  segments[idx][5] = create_seg(digit, 0, DT, DT, DH / 2 - DT, RED_DARK);              // top-left
-  segments[idx][6] = create_seg(digit, DT, DH / 2 - t / 2, DW - 2 * DT, DT, RED_DARK); // middle
+  segments[idx][0] = create_seg(digit, DT, 0, DW - 2 * DT, DT, RED_DARK);               // top
+  segments[idx][1] = create_seg(digit, DW - DT, DT, DT, DH / 2 - DT, RED_DARK);         // top-right
+  segments[idx][2] = create_seg(digit, DW - DT, DH / 2, DT, DH / 2 - DT, RED_DARK);     // bottom-right
+  segments[idx][3] = create_seg(digit, DT, DH - DT, DW - 2 * DT, DT, RED_DARK);         // bottom
+  segments[idx][4] = create_seg(digit, 0, DH / 2, DT, DH / 2 - DT, RED_DARK);           // bottom-left
+  segments[idx][5] = create_seg(digit, 0, DT, DT, DH / 2 - DT, RED_DARK);               // top-left
+  segments[idx][6] = create_seg(digit, DT, DH / 2 - DT / 2, DW - 2 * DT, DT, RED_DARK); // middle
 }
 
 SevenSegmentDisplay::SevenSegmentDisplay(lv_obj_t *parent, const char *labelText)
@@ -74,7 +72,7 @@ SevenSegmentDisplay::SevenSegmentDisplay(lv_obj_t *parent, const char *labelText
   setValue(0);
 }
 
-static const uint8_t digit_masks[10] = {
+static const uint8_t digit_masks[11] = {
     0b0111111, // 0
     0b0000110, // 1
     0b1011011, // 2
@@ -84,7 +82,8 @@ static const uint8_t digit_masks[10] = {
     0b1111101, // 6
     0b0000111, // 7
     0b1111111, // 8
-    0b1101111  // 9
+    0b1101111, // 9
+    0b0000000  // off
 };
 
 void SevenSegmentDisplay::setValue(int value)
@@ -95,6 +94,12 @@ void SevenSegmentDisplay::setValue(int value)
   for (int d = 0; d < 3; ++d)
   {
     uint8_t mask = digit_masks[vals[d]];
+
+    if (d == 0 && value < 100)
+      mask = digit_masks[-1];
+
+    if (d == 1 && value < 10)
+      mask = digit_masks[-1];
 
     for (int s = 0; s < 7; ++s)
     {
