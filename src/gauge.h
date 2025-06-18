@@ -19,8 +19,13 @@ class Gauge
   lv_color_t dark_colors[10];
   lv_color_t light_colors[10];
   lv_obj_t *label_obj;
+
+  // data
   const char *label;
   const char *unit;
+  // int min;
+  // int max;
+  // int reversed;
 
 public:
   Gauge(lv_obj_t *parent, GaugeData data);

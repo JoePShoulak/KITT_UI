@@ -3,10 +3,10 @@
 #include "gauge.h"
 #include "colors.h"
 
-#define BAR_WIDTH 20
+#define BAR_WIDTH 30
 #define BAR_HEIGHT 40
 
-Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.unit)
+Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.unit) // , min(data.min), max(data.max), reversed(data.reversed)
 {
   container = lv_obj_create(parent);
   lv_obj_remove_style_all(container);
@@ -23,7 +23,7 @@ Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.un
   lv_label_set_text(label_obj, label);
   lv_obj_set_style_text_color(label_obj, WHITE, 0);
   lv_obj_set_style_text_font(label_obj, &lv_font_montserrat_14, 0);
-  lv_obj_set_style_text_align(label_obj, LV_TEXT_ALIGN_RIGHT, 0);
+  lv_obj_set_style_text_align(label_obj, LV_TEXT_ALIGN_LEFT, 0);
   lv_obj_set_width(label_obj, lv_pct(100));
   lv_obj_set_style_pad_bottom(label_obj, 0, 0);
   lv_obj_set_style_pad_right(label_obj, 0, 0);
@@ -37,7 +37,7 @@ Gauge::Gauge(lv_obj_t *parent, GaugeData data) : label(data.label), unit(data.un
   lv_obj_set_layout(row, LV_LAYOUT_FLEX);
   lv_obj_set_flex_flow(row, LV_FLEX_FLOW_ROW);
   lv_obj_set_flex_align(row, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_END, LV_FLEX_ALIGN_CENTER);
-  lv_obj_set_style_pad_column(row, 2, 0);
+  lv_obj_set_style_pad_column(row, 10, 0);
   lv_obj_set_style_pad_row(row, 0, 0);
   lv_obj_set_width(row, LV_SIZE_CONTENT);
 
@@ -84,9 +84,9 @@ void Gauge::setValue(float norm)
   char buf[48];
 
   if (unit[0])
-    snprintf(buf, sizeof(buf), "%s %.2f%s", label, norm, unit);
+    snprintf(buf, sizeof(buf), "%s   %.2f%s", label, norm, unit);
   else
-    snprintf(buf, sizeof(buf), "%s %.2f", label, norm);
+    snprintf(buf, sizeof(buf), "%s   %.2f", label, norm);
 
   lv_label_set_text(label_obj, buf);
 
