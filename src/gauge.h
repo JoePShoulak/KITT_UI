@@ -3,13 +3,20 @@
 
 #include <lvgl.h>
 
+enum class GaugeMode
+{
+  NORMAL,
+  REVERSED,
+  CENTERED
+};
+
 struct GaugeData
 {
   const char *label;
   const char *unit;
   int min;
   int max;
-  bool reversed;
+  GaugeMode mode;
 };
 
 class Gauge
@@ -25,7 +32,7 @@ class Gauge
   const char *unit;
   int _min;
   int _max;
-  int reversed;
+  GaugeMode mode;
   float value;
 
 public:
