@@ -3,7 +3,8 @@
 
 #include <lvgl.h>
 
-class VoiceVisualiser {
+class VoiceVisualiser
+{
   lv_obj_t *viz;
   lv_obj_t *cols[3];
   int col_count[3];
