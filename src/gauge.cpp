@@ -3,10 +3,11 @@
 #include <Arduino.h>
 #include <ctype.h>
 
-#define BAR_WIDTH
-#define BAR_HEIGHT
+#define BAR_WIDTH 20
+#define BAR_HEIGHT 40
 
-Gauge::Gauge(lv_obj_t *parent, const char *label, const char *unit_param) {
+Gauge::Gauge(lv_obj_t *parent, const char *label, const char *unit_param)
+{
   container = lv_obj_create(parent);
   lv_obj_remove_style_all(container);
   lv_obj_clear_flag(container, LV_OBJ_FLAG_SCROLLABLE);
@@ -48,7 +49,8 @@ Gauge::Gauge(lv_obj_t *parent, const char *label, const char *unit_param) {
   lv_obj_set_style_pad_row(row, 0, 0);
   lv_obj_set_width(row, LV_SIZE_CONTENT);
 
-  for (int n = 0; n < 10; ++n) {
+  for (int n = 0; n < 10; ++n)
+  {
     lv_obj_t *bar = lv_obj_create(row);
     lv_obj_remove_style_all(bar);
     lv_obj_clear_flag(bar, LV_OBJ_FLAG_SCROLLABLE);
@@ -57,13 +59,18 @@ Gauge::Gauge(lv_obj_t *parent, const char *label, const char *unit_param) {
     lv_obj_set_style_bg_opa(bar, LV_OPA_COVER, 0);
     lv_color_t dark, light;
 
-    if (n < 4) {
+    if (n < 4)
+    {
       dark = GREEN_DARK;
       light = GREEN;
-    } else if (n < 7) {
+    }
+    else if (n < 7)
+    {
       dark = YELLOW_DARK;
       light = YELLOW;
-    } else {
+    }
+    else
+    {
       dark = RED_DARK;
       light = RED;
     }
@@ -77,7 +84,8 @@ Gauge::Gauge(lv_obj_t *parent, const char *label, const char *unit_param) {
   setValue(0.f);
 }
 
-void Gauge::setValue(float norm) {
+void Gauge::setValue(float norm)
+{
   norm = constrain(norm, 0.0f, 1.0f);
   int active = (int)(norm * 10 + 0.5f);
 
