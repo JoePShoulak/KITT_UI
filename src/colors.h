@@ -15,10 +15,10 @@
 #define GRAY_LIGHT lv_color_hex(0xBBBBBB)
 
 // dark variants for toggled-off states
-#define RED_DARK lv_color_hex(0x990000)
-#define YELLOW_DARK lv_color_hex(0x999900)
-#define ORANGE_DARK lv_color_hex(0xCC6600)
-#define GREEN_DARK lv_color_hex(0x009900)
-#define BLUE_DARK lv_color_hex(0x0033AA)
+#define RED_DARK lv_color_hex(0x660000)
+#define YELLOW_DARK lv_color_hex(0x666600)
+#define ORANGE_DARK lv_color_hex(0x993300)
+#define GREEN_DARK lv_color_hex(0x006600)
+#define BLUE_DARK lv_color_hex(0x002277)
 
 #endif
